@@ -1,0 +1,17 @@
+version: '3' 
+services:
+  mysql-workbench-vnc-docker:
+    image: openkbs/mysql-workbench-vnc-docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mysql-workbench-vnc-docker
+    environment:
+      - USER_ID=${USER_ID:-1000}
+      - GROUP_ID=${GROUP_ID:-1000}
+    env_file:
+      - ./docker.env
+    volumes:
+      - ${HOME}/data-docker/.mysql:/home/developer/.mysql
+      - ${HOME}/data-docker/mysql-workbench-vnc-docker/workspace:/home/developer/workspace
+      - ${HOME}/data-docker/mysql-workbench-vnc-docker/data:/home/developer/data
